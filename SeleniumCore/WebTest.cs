@@ -1,6 +1,5 @@
 using OpenQA.Selenium.Chrome;
 using System.IO;
-using System.Reflection;
 using Xunit;
 
 namespace SeleniumCore
@@ -9,9 +8,8 @@ namespace SeleniumCore
     {
         [Fact]
         public void Test1()
-        {
-            string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string driverFolder = currentDirectory + @"/Drivers/Windows/";
+        {            
+            string driverFolder = Directory.GetCurrentDirectory() + @"/Drivers/Windows/";
             var service = ChromeDriverService.CreateDefaultService(driverFolder, "chromedriver.exe");
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("headless");
