@@ -1,4 +1,6 @@
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using System.IO;
+using System.Reflection;
 using Xunit;
 
 namespace SeleniumCore
@@ -8,8 +10,12 @@ namespace SeleniumCore
         [Fact]
         public void Test1()
         {
-            var service = FirefoxDriverService.CreateDefaultService(@"F:\", "geckodriver.exe");
-            using (var driver = new FirefoxDriver(service))
+            string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string driverFolder = currentDirectory + @"/Drivers/Windows/";
+            var service = ChromeDriverService.CreateDefaultService(driverFolder, "chromedriver.exe");
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("headless");
+            using (var driver = new ChromeDriver(service, chromeOptions))
             {
                 driver.Url = "https://www.google.com";
                 driver.Navigate();
