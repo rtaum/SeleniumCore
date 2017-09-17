@@ -1,5 +1,4 @@
 using OpenQA.Selenium.Chrome;
-using System.IO;
 using Xunit;
 
 namespace SeleniumCore
@@ -9,15 +8,13 @@ namespace SeleniumCore
         [Fact]
         public void Test1()
         {            
-            string driverFolder = Directory.GetCurrentDirectory() + @"/Drivers/Windows/";
-            var service = ChromeDriverService.CreateDefaultService(driverFolder, "chromedriver.exe");
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("headless");
-            using (var driver = new ChromeDriver(service, chromeOptions))
+            using (var driver = new ChromeDriver(chromeOptions))
             {
-                driver.Url = "https://www.google.com";
+                driver.Url = "http://10.0.2.22/";
                 driver.Navigate();
-                Assert.Equal("Google", driver.Title);
+                Assert.Equal("Home Page - test", driver.Title);
             }
         }
     }
