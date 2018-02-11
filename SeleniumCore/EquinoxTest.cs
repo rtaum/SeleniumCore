@@ -15,11 +15,12 @@ namespace SeleniumCore
             chromeOptions.AddArgument("headless");
             using (var driver = new ChromeDriver(chromeOptions))
             {
-                var equinoxPage = new EquinoxPage(driver, "http://10.0.2.22/");
-                equinoxPage.Login(userName, password);
-                equinoxPage.NavigateToCustomersPage();
-                var customerEmailHref = equinoxPage.GetCustomerRef(customerEmail);
-                Assert.Equal($"mailto:{customerEmail}", customerEmailHref);
+                var equinoxPage = new EquinoxPage(driver, "https://github.com/");
+				Console.WriteLine(driver.Title);
+                //equinoxPage.Login(userName, password);
+                //equinoxPage.NavigateToCustomersPage();
+                //var customerEmailHref = equinoxPage.GetCustomerRef(customerEmail);
+                //Assert.Equal($"mailto:{customerEmail}", customerEmailHref);
             }
         }
     }
